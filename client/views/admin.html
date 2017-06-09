@@ -1,0 +1,65 @@
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">Admin Panel</div>
+        <div class="panel-body">
+
+            <table width="100" border="0" cellspacing="0" cellpadding="0" id="laps">
+                <tr>
+                    <td id="one"><a href="#" onclick="javascript:void(showElement('1', '2', '3')); document.getElementById('one').style.background = '#CCC'; return false;">Edit</a>||</td>
+                    <td id="two"><a href="#" onclick="javascript:void(showElement('2', '1', '3')); document.getElementById('two').style.background = '#CCC'; return false;">Tests</a>||</td>
+                    <td id="three"><a href="#" onclick="javascript:void(showElement('3', '2', '1')); document.getElementById('three').style.background = '#CCC'; return false;">Job positions</a>||</td>
+                </tr>
+            </table>
+
+            <table id="1" bgcolor="red" style="display:none;"><tr><td>
+                <div id="EditorsTable">
+                    <div class="table table-condensed" ng-controller="EditorsController">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-style="{'background-color':'#ffc5c5'}"
+                                dir-paginate="user in EditorsController|itemsPerPage:10">
+                                <td>{{ user.name }}</td>
+                                <td>{{ user.surname }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <dir-pagination-controls
+                                max-size="5"
+                                direction-links="true"
+                                boundary-links="true">
+                        </dir-pagination-controls>
+                    </div>
+
+                    <button class="btn btn-success" ng-click="deleteEditor()" type="submit">Delete Redactor</button>
+                </div>
+            </td></tr></table>
+
+            <table id="2" bgcolor="green" style="display:none;"><tr><td>
+
+                Test
+
+            </td></tr></table>
+
+            <table id="3" bgcolor="blue" style="display:none;"><tr><td>
+
+                Job positions
+
+            </td></tr></table>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function showElement(show, hide, hide2) {
+        document.getElementById(show).style.display = "block";
+        document.getElementById(hide).style.display = "none";
+        document.getElementById(hide2).style.display = "none";
+    }
+</script>
+

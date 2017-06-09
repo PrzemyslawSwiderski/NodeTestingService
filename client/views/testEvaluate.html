@@ -1,0 +1,49 @@
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">Tests to evaluate list</div>
+        <div class="panel-body">
+            <div class="table table-condensed table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Test id</th>
+                        <th>Candidate</th>
+                        <th>Job position</th>
+                        <th>Result [%]</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="test in testsResults">
+                        <td>{{test.id}}</td>
+                        <td>{{test.User.login}}</td>
+                        <td>{{test.Test.Job.name}}</td>
+                        <td>{{test.result.toFixed(2)}}</td>
+                        <td>
+                            <button id="evaluateTest" class="btn btn-primary btn-sm" ng-click="evaluate(test)">
+                                Solve
+                            </button>
+                        </td>
+                        <td>
+                            <button id="cancelTest" class="btn btn-danger btn-sm" ng-click="deleteItem(test)">
+                                Delete try
+                            </button>
+                        </td>
+                        <td>
+                            <button id="sendMail" class="btn btn-success btn-sm" ng-click="sendMail(test)">
+                                Send result
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+    <hr>
+</div>
+<!--<pre>{{ testAnswers | json }}</pre>-->

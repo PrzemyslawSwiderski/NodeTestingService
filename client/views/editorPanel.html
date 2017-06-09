@@ -1,0 +1,44 @@
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">Your tests</div>
+        <div class="panel-body">
+            <div class="table table-condensed table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Test id</th>
+                        <th>Connected job position</th>
+                        <th>Born date</th>
+                        <th>Privacy</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="test in tests">
+                        <td>{{test.id}}</td>
+                        <td>{{test.Job.name}}</td>
+                        <td>{{test.createdAt}}</td>
+                        <td>
+                            <span>{{displayTestPublic(test.public)}}</span>
+                            <span style="color: darkgrey;" ng-click="updateTestPublic(test)"> / {{displayTestPublic(!test.public)}}</span>
+                        </td>
+                        <td>
+                            <button id="removeTestButton" class="btn btn-danger btn-sm" ng-click="deleteItem(test)">
+                                Delete test
+                            </button>
+                        </td>
+                        <td>
+                            <button id="showDetailsButton" class="btn btn-primary btn-sm"
+                                    ng-click="showDetails(test)">Details
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+</div>

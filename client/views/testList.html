@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">List of Tests</div>
+        <div class="panel-body">
+            <div class="table table-condensed table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Test id</th>
+                        <th>Positions</th>
+                        <th>Create Date</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="test in tests">
+                        <td>{{test.id}}</td>
+                        <td>{{test.Job.name}}</td>
+                        <td>{{test.createdAt}}</td>
+                        <td>
+                            <button id="removeTestButton" class="btn btn-danger btn-sm" ng-click="deleteItem(test)">Delete test
+                            </button>
+                        </td>
+                        <td>
+                            <button id="showDetailsButton" class="btn btn-primary btn-sm" ng-click="showDetails(test)">Details
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+            	<div class="col-xs-6 col-sm-3 col-md-2">
+             		<a href="#createTest"><button id="addNewTestButton" class="btn btn-success btn-sm" ng-click="">Add new test</button></a>
+          		</div>
+          	</div>
+        </div>
+    </div>
+
+    <hr>
+</div>

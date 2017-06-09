@@ -1,0 +1,40 @@
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse"
+                data-target=".navbar-collapse">
+            <span class="icon-bar"></span> <span class="icon-bar"></span> <span
+                class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" ng-show="!$storage.loggedUser" href="#/">Homepage</a>
+    </div>
+    <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav" ng-show="$storage.loggedUser == null">
+            <li ng-class="{active:isActive('/about')}"><a href="#about">About</a></li>
+        </ul>
+        <ul class="nav navbar-nav" ng-show="$storage.loggedUser != null">
+            <li ng-class="{active:isActive('/about')}" ng-show="!$storage.loggedUser.adminRights"><a href="#about">About</a></li>
+            <li ng-class="{active:isActive('/editorPanel')}" ng-show="$storage.loggedUser.editorRights"><a
+                    href="#editorPanel">My panel</a></li>
+            <li ng-class="{active:isActive('/editors')}" ng-show="$storage.loggedUser.adminRights"><a href="#editors">Redactors</a>
+            </li>
+            <li ng-class="{active:isActive('/jobs')}" ng-show="$storage.loggedUser.adminRights"><a href="#jobs">Job Positions</a>
+            </li>
+            <li ng-class="{active:isActive('/testList')}" ng-show="$storage.loggedUser.adminRights"><a href="#testList">Tests</a>
+            </li>
+            <li ng-class="{active:isActive('/testEvaluate')}"
+                ng-show="$storage.loggedUser.adminRights || $storage.loggedUser.editorRights"><a href="#testEvaluate">Evaluate Test</a>
+            </li>
+            <li ng-class="{active:isActive('/solveTest')}"
+                ng-show="!$storage.loggedUser.adminRights && !$storage.loggedUser.editorRights"><a href="#solveTest">Solve Test</a></li>
+            <li ng-class="{active:isActive('/checkTestResults')}"
+                ng-show="!$storage.loggedUser.adminRights && !$storage.loggedUser.editorRights"><a
+                    href="#checkTestResults">See results</a></li>
+            <li ng-class="{active:isActive('/profile')}"><a href="#profile">Profile</a></li>
+        </ul>
+        <ul class="nav navbar-nav" >
+            <li>
+                <a>Language: <div class="badge" id="google_translate_element"></div></a>
+            </li>
+        </ul>
+    </div>
+</div>

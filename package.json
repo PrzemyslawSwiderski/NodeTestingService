@@ -1,0 +1,21 @@
+{
+  "name": "ZMZP_BLUE_TEAM",
+  "version": "0.0.1",
+  "private": true,
+  "main": "server.js",
+  "scripts": {
+    "db:sync": "node dbScripts/syncDbScript.js",
+    "db:populate": "node dbScripts/populateAll.js",
+    "db:drop": "node dbScripts/dropAll.js",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "ejs": "*",
+    "express": "^4.14.1",
+    "method-override": "^2.3.8",
+    "morgan": "^1.8.1",
+    "mysql": "^2.13.0",
+    "sequelize": "^3.30.3"
+  }
+}

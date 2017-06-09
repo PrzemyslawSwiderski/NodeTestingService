@@ -1,0 +1,78 @@
+<link rel='stylesheet' href='styles/createTest.css'/>
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">Create new test</div>
+        <div class="row">
+            <label for="repeatSelect"> Choose job position: </label>
+            <select name="repeatSelect" id="repeatSelect" ng-model="selectedJob">
+                <option ng-repeat="job in jobs" value="{{job.id}}">{{job.name}}</option>
+            </select>
+        </div>
+        <hr/>
+        <span class="glyphicon glyphicon-ok" style="color:green"></span> - correct answer
+        <div class="question" ng-repeat="q in questionsList">
+            <span>Question {{$index + 1}}:</span><br/>
+            Question text: {{q.question}}<br/>
+            <div ng-show="q.questionType=='CLOSED'">
+                <ul>
+                    <li>
+                        Content: {{q.answers[0].answer}} <span ng-if="q.answers[0].ifCorrect">
+                                <span class="glyphicon glyphicon-ok" style="color:green"></span>
+                            </span>
+                    </li>
+                    <li>
+                        Content: {{q.answers[1].answer}} <span ng-if="q.answers[1].ifCorrect">
+                                <span class="glyphicon glyphicon-ok" style="color:green"></span>
+                            </span>
+                    </li>
+                    <li>
+                        Content: {{q.answers[2].answer}} <span ng-if="q.answers[2].ifCorrect">
+                                <span class="glyphicon glyphicon-ok" style="color:green"></span>
+                            </span>
+                    </li>
+                    <li>
+                        Content: {{q.answers[3].answer}} <span ng-if="q.answers[3].ifCorrect">
+                                <span class="glyphicon glyphicon-ok" style="color:green"></span>
+                            </span>
+                    </li>
+                </ul>
+            </div>
+            <div ng-show="q.questionType=='OPEN'" class="question">
+                Correct Answer: {{q.answers[0].answer}}
+            </div>
+            <button id="removeQuestionButton" class="btn btn-danger" ng-click="removeQuestion(q)">Delete Question</button>
+            <hr>
+        </div>
+        <div class="question">
+            <span>Add new question:</span>
+            <input id="newQuestion_name" type="text" ng-model="newQuestion.question">
+            <br/>
+
+            <label for="typeSelect"> Question type: </label>
+            <select name="typeSelect" id="typeSelect" ng-model="newQuestion.questionType">
+                <option value="OPEN">Open</option>
+                <option value="CLOSED">Closed</option>
+            </select>
+            <br/>
+            <div ng-show="newQuestion.questionType=='CLOSED'">
+                <input class="w3-input w3-border w3-round" type="checkbox" ng-model="newQuestion.answers[0].ifCorrect"/>
+                <input type="text" ng-model="newQuestion.answers[0].answer"/> <br>
+                <input type="checkbox" ng-model="newQuestion.answers[1].ifCorrect"/>
+                <input type="text" ng-model="newQuestion.answers[1].answer"/> <br>
+                <input type="checkbox" ng-model="newQuestion.answers[2].ifCorrect">
+                <input type="text" ng-model="newQuestion.answers[2].answer"/> <br>
+                <input type="checkbox" ng-model="newQuestion.answers[3].ifCorrect">
+                <input type="text" ng-model="newQuestion.answers[3].answer"/> <br>
+            </div>
+            <div ng-show="newQuestion.questionType=='OPEN'" class="question">
+                <input type="text" ng-model="newQuestion.answers[0].answer">
+            </div>
+            <button id="addQuestionButton" class="btn btn-info" ng-click="addQuestionToList()">Save Question</button>
+        </div>
+        <button id="saveTestButton" ng-click="saveTest()" class="btn btn-success">Save test</button>
+    </div>
+    <hr>
+    <button id="backButton" class="btn btn-primary btn-sm" ng-click="goBack()">Go back
+    </button>
+</div>
+

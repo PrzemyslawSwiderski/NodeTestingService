@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">Redactors List</div>
+        <div class="panel-body">
+            <div class="table table-condensed table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>User id</th>
+                        <th>Login</th>
+                        <th>Options</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="editor in editors">
+                        <td>{{ editor.id }}</td>
+                        <td>{{ editor.login }}</td>
+                        <td><div class="btn btn-danger" ng-click="deletePermissions(editor)">Delete permissions</div></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div style="float: right;">
+                <b>Add redactor permission:</b>
+                <select ng-model="selectedEditor" ng-change="addPermissions()">
+                    <option ng-repeat="notEditor in notEditors" value="{{ notEditor.id }}">{{ notEditor.login }}</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+</div>

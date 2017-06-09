@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">Tests list to solve</div>
+        <div class="panel-body">
+            <div class="table table-condensed">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Test id</th>
+                        <th>Connected job position</th>
+                        <th>Create date</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="test in tests">
+                        <td>{{test.id}}</td>
+                        <td>{{test.Job.name}}</td>
+                        <td>{{test.createdAt}}</td>
+                        <td>
+                            <button id="showDetailsButton" class="btn btn-primary btn-sm" ng-click="showDetails(test)">Try to solve
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+</div>

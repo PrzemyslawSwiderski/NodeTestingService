@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">Results list</div>
+        <div class="panel-body">
+            <div class="table table-condensed table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Test ID</th>
+                        <th>Job Position</th>
+                        <th>Result [%]</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="test in testsResults">
+                        <td>{{test.id}}</td>
+                        <td>{{test.Test.Job.name}}</td>
+                        <td>{{test.result.toFixed(2)}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+    <hr>
+</div>

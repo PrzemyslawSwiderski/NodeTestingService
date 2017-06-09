@@ -1,0 +1,21 @@
+
+#question_name, #newQuestion_name {
+    margin-left: 18px;
+    width: 80%;
+}
+
+#saveTestButton {
+    margin-left: 25%;
+    width: 50%;
+}
+#addQuestionButton, #removeQuestionButton {
+    margin-left: 18px;
+}
+
+input {
+    margin-top: 15px;
+}
+
+div.question, span, .row {
+    margin-left: 18px;
+}

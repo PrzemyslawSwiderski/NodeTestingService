@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">Solve test with id: {{test.id}} on job position: {{test.Job.name}}</div>
+        <div class="panel-body">
+            <p><b>Check correct answer in closed question type and type text answer in open type questions.</b></p>
+            <div ng-repeat="q in test.Questions">
+                <span>Question {{$index + 1}}:</span><br/>
+                {{q.question}}
+                <div ng-show="q.questionType=='CLOSED'">
+                    <input type="checkbox" ng-model="q.Answers[0].givenAnswer"/>
+                    {{q.Answers[0].answer}}<br>
+                    <input type="checkbox" ng-model="q.Answers[1].givenAnswer"/>
+                    {{q.Answers[1].answer}}<br>
+                    <input type="checkbox" ng-model="q.Answers[2].givenAnswer">
+                    {{q.Answers[2].answer}}<br>
+                    <input type="checkbox" ng-model="q.Answers[3].givenAnswer">
+                    {{q.Answers[3].answer}}<br>
+                </div>
+                <div ng-show="q.questionType=='OPEN'">
+                    <input type="text" ng-model="q.Answers[0].givenAnswer">
+                </div>
+                <hr>
+            </div>
+        </div>
+        <button id="saveTestButton" ng-click="saveAnswers()" class="btn btn-success">Save answers</button>
+    </div>
+    <hr>
+    <button id="backButton" class="btn btn-primary btn-sm" ng-click="goBack()">Go back
+    </button>
+</div>

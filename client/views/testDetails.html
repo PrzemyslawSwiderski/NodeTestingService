@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">Test details: {{test.id}} {{test.Job.name}}</div>
+        <div class="panel-body">
+            <span class="glyphicon glyphicon-ok" style="color:green"></span> - correct answer
+            <div ng-repeat="q in test.Questions">
+                <span>Question {{$index + 1}}:</span><br/>
+                {{q.question}}
+                <div ng-show="q.questionType=='CLOSED'">
+                    <ul>
+                        <li ng-repeat="a in q.Answers">
+                            {{a.answer}}
+                            <span ng-if="a.ifCorrect">
+                                <span class="glyphicon glyphicon-ok" style="color:green"></span>
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+                <div ng-show="q.questionType=='OPEN'">
+                    Correct answer to open type question: {{q.Answers[0].answer}}
+                </div>
+                <hr>
+            </div>
+        </div>
+        <button id="saveTestButtonPDF" ng-click="saveTestPDF()" class="btn btn-success">Save test as PDF</button>
+        <br>
+        <button id="saveTestButtonEXCEL" ng-click="saveTestEXCEL()" class="btn btn-success">Save test as EXCEL</button>
+    </div>
+    <hr>
+    <button id="backButton" class="btn btn-primary btn-sm" ng-click="goBack()">Go back
+    </button>
+</div>

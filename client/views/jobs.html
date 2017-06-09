@@ -1,0 +1,174 @@
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">Job positions</div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <!--AngularJS SPA CRUD table-->
+                <table class="table table-condensed table-hover" ng-hide="loading">
+                    <!-- Header-->
+                    <tr class="panel-title">
+                        <!--Buttons column-->
+                        <th style="width: 100px;">
+                            <!--Add + Cancel-->
+                            <div class="btn-toolbar"><i class="btn glyphicon glyphicon-plus" ng-click="toggleAddMode()"
+                                                        title="Add" ng-hide="addMode"></i></div>
+                            <div class="btn-toolbar"><i class="btn glyphicon glyphicon-minus" ng-click="toggleAddMode()"
+                                                        title="Cancel" ng-show="addMode"></i></div>
+                        </th>
+
+                        <!-- Content columns-->
+                        <th style="vertical-align:middle">Id</th>
+                        <th style="vertical-align:middle">Name</th>
+                        <th style="vertical-align:middle">Company</th>
+                        <th style="vertical-align:middle">Description</th>
+                        <th style="vertical-align:middle">Status</th>
+                    </tr>
+
+                    <!--Row with the new item-->
+                    <tr ng-show="addMode" style="background: rgb(251, 244, 222)">
+                        <!--Buttons column-->
+                        <td>
+                            <div class="btn-toolbar">
+                                <!--Create + Cancel-->
+                                <div class="btn-group">
+                                    <i class="btn glyphicon glyphicon-floppy-disk" ng-click="createItem()"
+                                       title="Create"
+                                       ng-disabled="addForm.$invalid"></i>
+                                    <i class="btn glyphicon glyphicon-remove" ng-click="toggleAddMode()"
+                                       title="Cancel"></i>
+                                </div>
+                            </div>
+                        </td>
+                        <!-- Content columns-->
+                        <td>
+                        </td>
+                        <td>
+                            <form name="addForm">
+                                <input type="text" ng-model="newItem.name" class="form-control" required
+                                       placeholder="nazwa" ng-keydown="saveOnEnter(knownItem, $event)" />
+                            </form>
+                        </td>
+                        <td>
+                            <form name="addForm">
+                                <input type="text" ng-model="newItem.company" class="form-control" required
+                                       placeholder="firma" ng-keydown="saveOnEnter(knownItem, $event)" />
+                            </form>
+                        </td>
+                        <td>
+                            <form name="addForm">
+                                <input type="text" ng-model="newItem.description" class="form-control"
+                                       placeholder="opis" ng-keydown="saveOnEnter(knownItem, $event)"
+                                       required/>
+                            </form>
+                        </td>
+                        <td>
+                            <form name="addForm">
+                                <input type="text" ng-model="newItem.status" class="form-control"
+                                       placeholder="status" ng-keydown="saveOnEnter(knownItem, $event)" required/>
+                            </form>
+                        </td>
+                    </tr>
+
+                    <!--Content-->
+                    <tr ng-repeat="knownItem in knownItems">
+                        <!--Buttons column-->
+                        <td>
+                            <!--Edit + Delete-->
+                            <div class="btn-toolbar"
+                                 ng-show="knownItem.editMode == null || knownItem.editMode == false">
+                                <div class="btn-group">
+                                    <i class="btn glyphicon glyphicon-edit" ng-click="toggleEditMode(knownItem)"
+                                       title="Edit"></i>
+                                    <i class="btn glyphicon glyphicon-trash" ng-click="deleteItem(knownItem)"
+                                       title="Delete"
+                                       data-toggle="modal"></i>
+                                </div>
+                            </div>
+
+                            <!--Save + Cancel-->
+                            <div class="btn-toolbar" ng-show="knownItem.editMode">
+                                <div class="btn-group">
+                                    <i class="btn glyphicon glyphicon-floppy-disk" ng-click="updateItem(knownItem)"
+                                       title="Save" ng-disabled="editForm.$invalid"></i>
+                                    <i class="btn glyphicon glyphicon-remove" ng-click="toggleEditMode(knownItem)"
+                                       title="Cancel"></i>
+                                </div>
+                            </div>
+                        </td>
+
+                        <!-- Content columns-->
+                        <td style="vertical-align:middle">
+                            <!--Nazwa read mode-->
+                            <span ng-show="knownItem.editMode == null || knownItem.editMode == false"
+                                  ng-dblclick="toggleEditMode(knownItem)">
+                    {{knownItem.id}}
+                        </span>
+                            <!--Nazwa edit mode-->
+                            <form name="editForm">
+                                <input ng-model="knownItem.id" ng-show="knownItem.editMode" required
+                                       ng-keydown="updateOnEnter(knownItem, $event)" class="form-control"/>
+                            </form>
+                        </td>
+                        <td style="vertical-align:middle">
+                            <!--Nazwa read mode-->
+                            <span ng-show="knownItem.editMode == null || knownItem.editMode == false"
+                                  ng-dblclick="toggleEditMode(knownItem)">
+                    {{knownItem.name}}
+                        </span>
+                            <!--Nazwa edit mode-->
+                            <form name="editForm">
+                                <input ng-model="knownItem.name" ng-show="knownItem.editMode" required
+                                       ng-keydown="updateOnEnter(knownItem, $event)" class="form-control"/>
+                            </form>
+                        </td>
+                        <td style="vertical-align:middle">
+                            <!--Nazwa read mode-->
+                            <span ng-show="knownItem.editMode == null || knownItem.editMode == false"
+                                  ng-dblclick="toggleEditMode(knownItem)">
+                    {{knownItem.company}}
+                        </span>
+                            <!--Nazwa edit mode-->
+                            <form name="editForm">
+                                <input ng-model="knownItem.company" ng-show="knownItem.editMode" required
+                                       ng-keydown="updateOnEnter(knownItem, $event)" class="form-control"/>
+                            </form>
+                        </td>
+                        <td style="vertical-align:middle">
+                            <!--Nazwa read mode-->
+                            <span ng-show="knownItem.editMode == null || knownItem.editMode == false"
+                                  ng-dblclick="toggleEditMode(knownItem)">
+                    {{knownItem.description}}
+                        </span>
+                            <!--Nazwa edit mode-->
+                            <form name="editForm">
+                                <input ng-model="knownItem.description" ng-show="knownItem.editMode" required
+                                       ng-keydown="updateOnEnter(knownItem, $event)" class="form-control"/>
+                            </form>
+                        </td>
+                        <td style="vertical-align:middle">
+                            <!--Nazwa read mode-->
+                            <span ng-show="knownItem.editMode == null || knownItem.editMode == false"
+                                  ng-dblclick="toggleEditMode(knownItem)">
+                    {{knownItem.status}}
+                        </span>
+                            <!--Nazwa edit mode-->
+                            <form name="editForm">
+                                <input ng-model="knownItem.status" ng-show="knownItem.editMode" required
+                                       ng-keydown="updateOnEnter(knownItem, $event)" class="form-control"/>
+                            </form>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="row">
+                <div class="col-xs-6 col-sm-3 col-md-2">
+                    <button id="addNewJobButton" class="btn btn-success btn-sm" ng-click="toggleAddMode()">
+                        {{getButtonNameByEditMode()}}
+                    </button>
+                </div>
+            </div>
+            <!--Loading indicator-->
+            <img src="images/loading.gif" ng-show="loading" class="center-block" title="Loading..."/>
+        </div>
+    </div>
+</div>
